@@ -63,6 +63,10 @@ input::placeholder {
   margin: 0 20px 0 20px;
 }
 
+.content-table img{
+  width: 22px;
+}
+
 @media screen and (min-width: 280px) {
   .tc-icoin-pages .icoin-b img {
     width: 15px;
@@ -96,10 +100,12 @@ input::placeholder {
     width: 137px;
   }
 
-  .content {
+  .content-table {
     margin-top: 15px;
     padding: 5px;
   }
+
+
 
   table {
     border-collapse: collapse;
@@ -117,9 +123,6 @@ input::placeholder {
     text-align: left;
   }
 
-  .table td img {
-    width: 22px;
-  }
 
   .center {
     text-align: center;
