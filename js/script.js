@@ -60,6 +60,9 @@ class Objective {
       td_deadline.innerText = this.arrayObjective[i].deadline;
 
       td_id.classList.add("center");
+      td_actions.classList.add("center");
+
+
 
       let imgEdit = document.createElement("img");
       imgEdit.src = "img/edit.svg";
@@ -75,13 +78,14 @@ class Objective {
         "objective.delet(" + this.arrayObjective[i].id + ")"
       );
 
+
       td_actions.appendChild(imgEdit);
       td_actions.appendChild(imgDelet);
     }
   }
 
   delet(id) {
-    if (confirm("Do you want to delete the objective from the ID " + id)) {
+    if (confirm("Do you want to delete the objective from the ID " + id + '?')) {
       let tbody = document.getElementById("tbody");
 
       for (let i = 0; i < this.arrayObjective.length; i++) {

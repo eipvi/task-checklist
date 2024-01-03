@@ -17,7 +17,7 @@
 }
 
 #tc-bg-container {
-  width: 316px;
+  width: 350px;
 }
 
 #tc-bg-container div {
@@ -49,11 +49,12 @@ li {
 
 input {
   background-color: var(--background-bg);
-  padding: 10px;
+  padding: 8px 50px;
   border-radius: 3px;
   border: 1px solid var(--text-color);
   color: var(--text-color-white);
   outline: 0;
+  height: 50px;
 }
  
 
@@ -62,11 +63,11 @@ input::placeholder {
 }
 
 .tc-button button {
-  margin: 0 20px 0 20px;
+  margin: 0 30px 0 30px;
 }
 
 .content-table img{
-  width: 22px;
+  width: 27px;
 }
 
 
@@ -76,14 +77,14 @@ input::placeholder {
 
 @media screen and (min-width: 280px) {
   .tc-icoin-pages .icoin-b img {
-    width: 15px;
+    width: 20px;
     display: block;
   }
 
   .icoin-c img {
     display: flex;
     width: 50px;
-    margin: 0 0 0 203px;
+    margin: 0 0 0 180px;
   }
 
   .img-fluid {
@@ -125,8 +126,9 @@ input::placeholder {
 
   table th,
   td {
-    padding: 1px 6px;
+    padding: 3px 14px;
     text-align: left;
+    
   }
 
 }
@@ -152,4 +154,8 @@ input::placeholder {
 
 .tc-padding-top {
   padding-top: 100px;
+}
+
+.tc-padding-bottom-50{
+  padding-bottom: 50px;
 }
