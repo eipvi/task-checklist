@@ -1,75 +1,34 @@
 class Objective {
   constructor() {
     this.id = 1;
-    this.arrayObjetive = [];
+    this.arrayObjective = [];
     this.editId = null;
   }
 
   save() {
-    let objective = this.readData;
+    let objective = this.readData();
 
     if (this.validComposed(objective)) {
       if (this.editId == null) {
-        this.adicionar(objective);
+        this.inset(objective);
       } else {
-        this.atualizar(this.editId, objective);
+        this.update(this.editId, objective);
       }
     }
     this.listTable();
+    this.cancel();
   }
 
-  // listTable() {
-  //   let tbody = document.getElementById("tbody");
-  //   tbody.innerText = "";
-
-  //   for (let i = 0; i < this.arrayObjetive.length; i++) {
-  //     let tr = tbody.insertRow();
-
-  //     let td_id = tr.insertCell();
-  //     let td_objective = tr.insertCell();
-  //     let td_deadline = tr.insertCell();
-  //     let td_actions = tr.insertCell();
-
-  //     td_id.innerText = this.arrayObjetive[i].id;
-  //     td_objective.innerText = this.arrayObjetive[i].nomeObjetive;
-  //     td_deadline.innerText = this.arrayObjetive[i].deadline;
-
-  //     td_id.classList.add("center");
-
-  //     let imgEdit = document.createElement("img");
-  //     imgEdit.src = "assets/edit.svg";
-  //     imgEdit.setAttribute(
-  //       "onclick",
-  //       "objetive.preparaEditacao(" +
-  //         JSON.stringify(this.arrayObjetive[i]) +
-  //         ")"
-  //     );
-
-  //     let imgdelet = document.createElement("img");
-  //     imgdelet.src = "assets/delet.svg";
-  //     imgdelet.setAttribute(
-  //       "onclick",
-  //       "objetive.deadline(" + this.arrayObjetive[i].id + ")"
-  //     );
-
-  //     td_actions.appendChild(imgEdit);
-  //     td_actions.appendChild(imgdelete);
-
-  //     console.log(this.arrayObjetive);
-  //   }
-  // }
-
-  adicionar(objective) {
-    objective.deadline = parseFloat(objective.deadline);
-    this.arrayObjetive.push(objective);
+  inset(objective) {
+    this.arrayObjective.push(objective);
     this.id++;
   }
 
-  atualizar(id, objective) {
-    for (let i = 0; i < this.arrayObjetive.length; i++) {
-      if (this.arrayObjetive[i].id == id) {
-        this.arrayObjetive[i].nomeObjetive = objective.nomeObjetive;
-        this.arrayObjetive[i].deadline = objective.deadline;
+  update(id, objective) {
+    for (let i = 0; i < this.arrayObjective.length; i++) {
+      if (this.arrayObjective[i].id == id) {
+        this.arrayObjective[i].nomeObjective = objective.nomeObjective;
+        this.arrayObjective[i].deadline = objective.deadline;
       }
     }
   }
@@ -78,16 +37,74 @@ class Objective {
     let objective = {};
 
     objective.id = this.id;
-    objective.nomeObjetive = document.getElementById("objective").value;
+    objective.nomeObjective = document.getElementById("objective").value;
     objective.deadline = document.getElementById("deadline").value;
 
     return objective;
   }
 
+  listTable() {
+    let tbody = document.getElementById("tbody");
+    tbody.innerText = "";
+
+    for (let i = 0; i < this.arrayObjective.length; i++) {
+      let tr = tbody.insertRow();
+
+      let td_id = tr.insertCell();
+      let td_objective = tr.insertCell();
+      let td_deadline = tr.insertCell();
+      let td_actions = tr.insertCell();
+
+      td_id.innerText = this.arrayObjective[i].id;
+      td_objective.innerText = this.arrayObjective[i].nomeObjective;
+      td_deadline.innerText = this.arrayObjective[i].deadline;
+
+      td_id.classList.add("center");
+
+      let imgEdit = document.createElement("img");
+      imgEdit.src = "img/edit.svg";
+      imgEdit.setAttribute(
+        "onclick",
+        "objective.prepareEdit(" + JSON.stringify(this.arrayObjective[i]) + ")"
+      );
+
+      let imgDelet = document.createElement("img");
+      imgDelet.src = "img/delet.svg";
+      imgDelet.setAttribute(
+        "onclick",
+        "objective.delet(" + this.arrayObjective[i].id + ")"
+      );
+
+      td_actions.appendChild(imgEdit);
+      td_actions.appendChild(imgDelet);
+    }
+  }
+
+  delet(id) {
+    if (confirm("Do you want to delete the objective from the ID " + id)) {
+      let tbody = document.getElementById("tbody");
+
+      for (let i = 0; i < this.arrayObjective.length; i++) {
+        if (this.arrayObjective[i].id == id) {
+          this.arrayObjective.splice(i, 1);
+          tbody.deleteRow(i);
+        }
+      }
+    }
+  }
+
+  prepareEdit(dados) {
+    this.editId = dados.id;
+
+    document.getElementById("objective").value = dados.nomeObjective;
+    document.getElementById("deadline").value = dados.deadline;
+    document.getElementById("btn1").innerText = "To update";
+  }
+
   validComposed(objective) {
     let msg = "";
 
-    if (objective.nomeObjetive == "") {
+    if (objective.nomeObjective == "") {
       msg += " - Enter the name of the objective! \n";
     }
     if (objective.deadline == "") {
@@ -102,13 +119,13 @@ class Objective {
     return true;
   }
 
-  // cancel() {
-  //   document.getElementById("objective").value = "";
-  //   document.getElementById("deadline").value = "";
+  cancel() {
+    document.getElementById("objective").value = "";
+    document.getElementById("deadline").value = "";
 
-  //   document.getElementById("btn1").innerText = "save";
-  //   this.editId = null;
-  // }
+    document.getElementById("btn1").innerText = "Save";
+    this.editId = null;
+  }
 }
 
 var objective = new Objective();

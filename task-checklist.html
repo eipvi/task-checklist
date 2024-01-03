@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/css/style.css" />
-    <title>Bootstrap demo</title>
+    <title>Task Checklist</title>
     <link href="css/bootstrap.min.css" rel="stylesheet" />
   </head>
   <body id="bg-task">
@@ -35,7 +35,12 @@
               <div class="d-flex tc-button">
                 <button
                   type="button"
-                  onclick="objective.save()" class="btn btn-dark" id="btn1"> Save </button>
+                  onclick="objective.save()"
+                  class="btn btn-dark"
+                  id="btn1"
+                >
+                  Save
+                </button>
                 <button
                   type="button"
                   onclick="objective.cancel()"
@@ -47,20 +52,19 @@
               <div class="content-table">
                 <table>
                   <thead>
-                    <th class="ID">ID</th>
+                    <th class="center">ID</th>
                     <th>Objective</th>
                     <th>Deadline</th>
-                    <th>Actions</th>
-              
+                    <th class="center">Actions</th>
                   </thead>
                   <tbody id="tbody">
-                    <tr>
+                    <!-- <tr>
                       <td>1</td>
                       <td>mes</td>
                       <td>1900</td>
                       <td><img src="/img/edit.svg" alt="">
                       <img src="/img/delet.svg" alt=""></td>
-                    </tr>
+                    </tr> -->
                   </tbody>
                 </table>
               </div>
